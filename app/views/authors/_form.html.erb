@@ -1,0 +1,20 @@
+<%= form_with model: @author do |f| %>
+
+  <p>
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </p>
+
+  <p>
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </p>
+
+  <p>
+    <%= f.label :date_of_birth %><br>
+    <%= f.date_field :date_of_birth %>
+  </p>
+
+  <%= f.submit %>
+
+<% end %>

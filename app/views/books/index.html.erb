@@ -1,0 +1,21 @@
+<h1>Books</h1>
+
+<%= link_to "Add Book", new_book_path %>
+
+<hr>
+
+<% @books.each do |book| %>
+
+  <p>
+    <%= book.book_title %>
+    <br>
+
+    Authors:
+    <%= book.authors.map(&:first_name).join(", ") %>
+    <br>
+    <%= link_to "Edit", edit_book_path(book) %>
+    <%= button_to "Delete",
+          book,
+          method: :delete %>
+  </p>
+<% end %>

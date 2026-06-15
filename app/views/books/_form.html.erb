@@ -1,0 +1,19 @@
+<%= form_with model: @book do |f| %>
+
+  <%= f.label :book_title %>
+  <%= f.text_field :book_title %>
+
+  <br><br>
+
+  <%= f.collection_check_boxes(
+        :author_ids,
+        Author.all,
+        :id,
+        :first_name
+      ) %>
+
+  <br><br>
+
+  <%= f.submit %>
+
+<% end %>

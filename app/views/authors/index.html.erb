@@ -1,0 +1,18 @@
+<h1>Authors</h1>
+
+<%= link_to "Add Author", new_author_path %>
+
+<% @authors.each do |author| %>
+
+  <p>
+    <%= author.first_name %>
+    <%= author.last_name %>
+
+    <%= link_to "Edit", edit_author_path(author) %>
+
+    <%= button_to "Delete",
+          author,
+          method: :delete %>
+  </p>
+
+<% end %>
