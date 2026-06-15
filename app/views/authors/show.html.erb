@@ -1,0 +1,26 @@
+<h1>Author Details</h1>
+
+<p>
+  <strong>First Name:</strong>
+  <%= @author.first_name %>
+</p>
+
+<p>
+  <strong>Last Name:</strong>
+  <%= @author.last_name %>
+</p>
+
+<p>
+  <strong>Date Of Birth:</strong>
+  <%= @author.date_of_birth %>
+</p>
+
+<h3>Books Written</h3>
+
+<ul>
+  <% @author.books.each do |book| %>
+    <li><%= book.book_title %></li>
+  <% end %>
+</ul>
+
+<%= link_to "Back", authors_path %>

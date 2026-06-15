@@ -5,7 +5,13 @@ class BooksController < ApplicationController
     end    
 
     def show
-        @book = Book.find(params[:id])
+    @book = Book.find(params[:id])
+
+    render json: {
+        id: @book.id,
+        book_title: @book.book_title,
+        authors: @book.authors.select(:id, :first_name, :last_name)
+    }
     end
 
     def new

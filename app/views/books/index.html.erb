@@ -2,20 +2,31 @@
 
 <%= link_to "Add Book", new_book_path %>
 
-<hr>
+<br><br>
 
-<% @books.each do |book| %>
+<table border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <th>Book Title</th>
+    <th>Authors</th>
+    <th>Actions</th>
+  </tr>
 
-  <p>
-    <%= book.book_title %>
-    <br>
+  <% @books.each do |book| %>
+    <tr>
+      <td><%= book.book_title %></td>
 
-    Authors:
-    <%= book.authors.map(&:first_name).join(", ") %>
-    <br>
-    <%= link_to "Edit", edit_book_path(book) %>
-    <%= button_to "Delete",
-          book,
-          method: :delete %>
-  </p>
-<% end %>
+      <td>
+        <%= book.authors.map(&:first_name).join(", ") %>
+      </td>
+
+      <td>
+        <%= link_to "Edit", edit_book_path(book) %>
+
+        <%= button_to "Delete",
+              book,
+              method: :delete,
+              form: { style: "display:inline;" } %>
+      </td>
+    </tr>
+  <% end %>
+</table>
