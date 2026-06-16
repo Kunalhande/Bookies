@@ -7,15 +7,21 @@ class AuthorsController < ApplicationController
   def show
     @author = Author.find(params[:id])
 
-    render json:{
-      id:@author.id,
-      first_name:@author.first_name,
-      last_name:@author.last_name
-      books:@author.book
-    }
+    respond_to do |format|
+      format.html
 
-
+      format.json do
+        render json: {
+          id: @author.id,
+          first_name: @author.first_name,
+          last_name: @author.last_name,
+          date_of_birth: @author.date_of_birth,
+          books: @author.books.select(:id, :book_title)
+        }
+      end
+    end
   end
+  
 
   def new
     @author = Author.new

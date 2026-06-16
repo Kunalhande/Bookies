@@ -1,26 +1,30 @@
-<h1>Author Details</h1>
+<div class="author-details-card">
 
-<p>
-  <strong>First Name:</strong>
-  <%= @author.first_name %>
-</p>
+  <h1>Author Details</h1>
 
-<p>
-  <strong>Last Name:</strong>
-  <%= @author.last_name %>
-</p>
+  <p>
+    <strong>First Name:</strong>
+    <%= @author.first_name %>
+  </p>
 
-<p>
-  <strong>Date Of Birth:</strong>
-  <%= @author.date_of_birth %>
-</p>
+  <p>
+    <strong>Last Name:</strong>
+    <%= @author.last_name %>
+  </p>
 
-<h3>Books Written</h3>
+  <p>
+    <strong>Date Of Birth:</strong>
+    <%= @author.date_of_birth %>
+  </p>
 
-<ul>
-  <% @author.books.each do |book| %>
-    <li><%= book.book_title %></li>
-  <% end %>
-</ul>
+  <h3>Books Written</h3>
 
-<%= link_to "Back", authors_path %>
+  <ul class="books-list">
+    <% @author.books.each do |book| %>
+      <li><%= book.book_title %></li>
+    <% end %>
+  </ul>
+
+  <%= link_to "Back", authors_path, class: "back-btn" %>
+
+</div>

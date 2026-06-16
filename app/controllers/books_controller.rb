@@ -4,14 +4,19 @@ class BooksController < ApplicationController
         @books = Book.all
     end    
 
-    def show
+   def show
     @book = Book.find(params[:id])
 
-    render json: {
-        id: @book.id,
-        book_title: @book.book_title,
-        authors: @book.authors.select(:id, :first_name, :last_name)
-    }
+    respond_to do |format|
+        format.html
+        format.json do
+        render json: {
+            id: @book.id,
+            book_title: @book.book_title,
+            authors: @book.authors.select(:id, :first_name, :last_name)
+        }
+        end
+      end
     end
 
     def new
@@ -30,10 +35,14 @@ class BooksController < ApplicationController
         end        
     end
 
-    def edit 
+   def edit
         @book = Book.find(params[:id])
-        @authors = Author.all
-    end    
+
+        selected_authors = @book.authors
+        unselected_authors = Author.where.not(id: selected_authors.pluck(:id))
+
+        @authors = selected_authors + unselected_authors
+   end  
 
     def update
         @book = Book.find(params[:id])
@@ -41,9 +50,13 @@ class BooksController < ApplicationController
         if @book.update(book_params)
             redirect_to books_path
         else
-            @authors = Author.all
+            selected_authors = @book.authors
+            unselected_authors = Author.where.not(id: selected_authors.pluck(:id))
+
+            @authors = selected_authors + unselected_authors
+
             render :edit
-        end    
+        end   
     end
 
     def destroy
